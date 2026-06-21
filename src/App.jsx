@@ -1,18 +1,18 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import './App.css'
-import Body from './components/Body'
+import "./App.css";
+import Body from "./components/Body";
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div className='  '>
-       <Body/>
-      </div>
-        </>
-  )
+    <Provider store={appStore}>
+      <Body />
+    </Provider>
+    </>
+  );
 }
 
-export default App
+export default App;
