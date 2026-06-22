@@ -7,10 +7,12 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [iscurrStateSignIn, setIsCurStateSignIn] = useState(true);
   const [errorMssg, setErrormssg] = useState(null);
+  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -25,28 +27,35 @@ const Login = () => {
   }
 
   function login() {
-    signInWithEmailAndPassword(auth,email.current.value,password.current.value)
+    signInWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value,
+    )
       .then((usearcred) => {
         const user = usearcred.user;
-        console.log(user);
-        
+        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrormssg(errorCode +"-"+errorMessage)
-
+        setErrormssg(errorCode + "-" + errorMessage);
       });
   }
-   function SignUp() {
-    createUserWithEmailAndPassword(auth,email.current.value,password.current.value)
+  function SignUp() {
+    createUserWithEmailAndPassword(
+      auth,
+      email.current.value,
+      password.current.value,
+    )
       .then((usearcred) => {
         const user = usearcred.user;
+        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErrormssg(errorCode +"-"+errorMessage)
+        setErrormssg(errorCode + "-" + errorMessage);
       });
   }
 
@@ -59,15 +68,12 @@ const Login = () => {
       const err = checkValidate(email.current.value, password.current.value);
 
       setErrormssg(err);
-         
 
       if (err == null) {
         if (!iscurrStateSignIn) {
-          SignUp()
-        }
-        else
-        {
-          login()
+          SignUp();
+        } else {
+          login();
         }
       }
       console.log(email.current.value);
@@ -112,13 +118,13 @@ const Login = () => {
             placeholder="Password"
             className="p-2 bg-gray-800 w-full rounded"
           />
+          {errorMssg && <span className="text-red-500 text-">{errorMssg}</span>}
           <button
-            className="bg-red-600 p-2 rounded cursor-pointer mt-4"
+            className="bg-red-700 p-2 rounded cursor-pointer mt-4"
             type="submit"
           >
             {iscurrStateSignIn ? "SignIn" : "SignUP"}
           </button>
-          {errorMssg && <span className="text-red-500 text-">{errorMssg}</span>}
 
           {iscurrStateSignIn ? (
             <div className="text-white font-bold ">
