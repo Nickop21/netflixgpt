@@ -5,14 +5,20 @@ import { useRef } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
+import { log } from "firebase/firestore/pipelines";
+import { heroImage } from "../utils/constants";
 
 const Login = () => {
   const [iscurrStateSignIn, setIsCurStateSignIn] = useState(true);
   const [errorMssg, setErrormssg] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -34,7 +40,6 @@ const Login = () => {
     )
       .then((usearcred) => {
         const user = usearcred.user;
-        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -50,7 +55,11 @@ const Login = () => {
     )
       .then((usearcred) => {
         const user = usearcred.user;
-        navigate("/browse");
+        return updateProfile(user, { displayName: name.current.value }); // display name update
+      })
+      .then(() => {
+        const { uid, email, displayName } = auth.currentUser;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -81,12 +90,10 @@ const Login = () => {
   }
   return (
     <div className="relative h-154 w-full">
-      <div className="absolute z-30 inset-0 p-6 bg-linear-to-b from-black/75  ">
-        <Header />
-      </div>
+      <Header />
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/8027eb3f-343a-499d-9892-e683c12e3cb1/web/IN-en-20260608-TRIFECTA-perspective_d70af879-e407-4aee-8615-4c82210065d5_small.jpg"
-        alt="bgImage"
+        src={heroImage}
+        alt="Hero image"
         className="bg-red-600 object-cover h-full w-full"
       />
 
