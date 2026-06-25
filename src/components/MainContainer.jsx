@@ -1,20 +1,20 @@
-import React from 'react'
-import Videotitle from './Videotitle'
-import VideoBackground from './VideoBackground'
-import { useSelector } from 'react-redux'
+import React from "react";
+import Videotitle from "./Videotitle";
+import VideoBackground from "./VideoBackground";
+import { useSelector } from "react-redux";
 
 const MainContainer = () => {
-  const moviesData=useSelector((store)=>store.movies.nowPlayingMovies)
-  if (!moviesData) return
-  const mainMovie=moviesData[2]
-      const {title,overview}=mainMovie
+  const moviesData = useSelector((store) => store.movies.nowPlayingMovies);
+  if (!moviesData) return;
+  const mainMovie = moviesData[2];
+  const { title, overview } = mainMovie;
 
   return (
-    <div className='relative aspect-video '>
+    <div className="relative aspect-video flex ">
       <Videotitle title={title} overview={overview} />
-      <VideoBackground/>
+      <VideoBackground />
     </div>
-  )
-}
+  );
+};
 
-export default MainContainer
+export default MainContainer;

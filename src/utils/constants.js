@@ -7,3 +7,5 @@ export const api_options= {
     Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9."+import.meta.env.VITE_TMDB_API_KEY
   }
 };
+
+export const backDropMainUrl="https://image.tmdb.org/t/p/w500/"

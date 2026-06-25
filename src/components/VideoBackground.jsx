@@ -7,13 +7,14 @@ const VideoBackground = () => {
   const videoKey = useSelector((store) => store.movies.moviestrailer);
 
   return (
-    <div className="h-full absolute inset-0 -z-10">
+    <div className="absolute -z-10 w-full ">
       {videoKey && (
         <iframe
-          className="w-screen pointer-events-none aspect-video  "
-          src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1`}
+          className="w-full pointer-events-none aspect-video  "
+          src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=3`}
           title="YouTube video player"
-          allow="autoplay; encrypted-media"
+          
+          allow="autoplay"
         />
       )}
     </div>
