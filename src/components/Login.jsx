@@ -89,7 +89,7 @@ const Login = () => {
     }
   }
   return (
-    <div className="relative h-154 w-full">
+    <div className="relative h-screen w-full flex justify-center items-center">
       <Header />
       <img
         src={heroImage}
@@ -98,13 +98,13 @@ const Login = () => {
       />
 
       <form
-        className="absolute inset-0 z-50 p-6 md-p-10 bg-black/50 h-2/3 sm:w-1/2 md:w-1/3 my-auto mx-4 sm:m-auto  text-amber-50 rounded "
+        className="absolute z-50 p-6 md-p-10 bg-black/50  sm:w-1/4 my-auto mx-4 sm:m-auto  text-amber-50 rounded "
         onSubmit={(e) => handleSubmitForm(e)}
       >
         <h2 className="text-2xl text-white font-bold">
           {iscurrStateSignIn ? "Sign In" : "SIgnUp"}
         </h2>
-        <div className="flex flex-col gap-4 mt-6">
+        <div className="flex flex-col gap-4 mt-6 h-full">
           {!iscurrStateSignIn && (
             <input
               type="text"

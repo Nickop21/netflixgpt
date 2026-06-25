@@ -39,7 +39,7 @@ const Header = () => {
   }
 
   return (
-    <div className="absolute z-30 bg-linear-to-b from-black/75 w-full p-8 flex justify-between">
+    <div className="fixed top-0 z-90 bg-linear-to-b from-black/95 w-full p-8 flex justify-between">
       <img src={netflixsvg} alt="" className="w-32  netflix" />
       {user && (
         <button
