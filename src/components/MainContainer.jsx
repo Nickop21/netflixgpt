@@ -5,14 +5,18 @@ import { useSelector } from "react-redux";
 
 const MainContainer = () => {
   const moviesData = useSelector((store) => store.movies.nowPlayingMovies);
+  
   if (!moviesData) return;
-  const mainMovie = moviesData[2];
+  // const randomNumber = Math.floor(Math.random() * (19 - 2 + 1)) + 2;
+  const randomNumber=6
+
+  const mainMovie = moviesData[randomNumber];
   const { title, overview } = mainMovie;
 
   return (
     <div className="relative aspect-video flex ">
       <Videotitle title={title} overview={overview} />
-      <VideoBackground />
+      <VideoBackground number={randomNumber} />
     </div>
   );
 };

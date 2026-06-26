@@ -29,7 +29,7 @@ const Login = () => {
       setIsCurStateSignIn(false);
     } else setIsCurStateSignIn(true);
 
-    console.log(islogin);
+    // console.log(islogin);
   }
 
   function login() {
