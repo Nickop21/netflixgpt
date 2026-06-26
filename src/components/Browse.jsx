@@ -6,12 +6,14 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import movie from "../utils/movie.json"
 import { addNowPlayingMovies } from "../store/moviesSlice";
+import usePoupularMovies from "../hooks/usePoupularMovies";
 
 
 const Browse = () => {
   const dispatch=useDispatch()
-  // useNowPlayingMovies()
-      dispatch(addNowPlayingMovies(movie));
+  useNowPlayingMovies()
+      usePoupularMovies()
+      // dispatch(addNowPlayingMovies(movie));
   
   return (
     <div>
