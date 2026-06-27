@@ -4,22 +4,28 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import { useDispatch, useSelector } from "react-redux";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
-import movie from "../utils/movie.json"
 import { addNowPlayingMovies } from "../store/moviesSlice";
 import usePoupularMovies from "../hooks/usePoupularMovies";
-
+import SearchGpt from "./SearchGpt";
 
 const Browse = () => {
-  const dispatch=useDispatch()
-  useNowPlayingMovies()
-      usePoupularMovies()
-      // dispatch(addNowPlayingMovies(movie));
-  
+  const dispatch = useDispatch();
+  const isGptWindow = useSelector((store) => store.searchGptSlice.gptWindow);
+  useNowPlayingMovies();
+  usePoupularMovies();
+  // dispatch(addNowPlayingMovies(movie));
+
   return (
     <div>
       <Header />
-      <MainContainer/>
-      <SecondaryContainer/>
+      {isGptWindow ? (
+        <SearchGpt />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const VideoBackground = ({number}) => {
       {videoKey && (
         <iframe
           className="w-full pointer-events-none aspect-video  "
-          src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop`}
+          src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoKey}`}
           title="YouTube video player"
           
           allow="autoplay"
